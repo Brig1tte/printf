@@ -97,30 +97,30 @@ int get_unsigned(va_list arg)
  */
 int get_octal(va_list arg)
 {
-	int x = 0, y = 0;
+	int a = 0, b = 0;
 
 	char octal[50];
 	unsigned int getOctal = va_arg(arg, unsigned int);
 
 	if (getOctal == 0)
 	{
-		octal[x] = (0 + '0');
-		i++;
+		octal[a] = (0 + '0');
+		a++;
 	}
 
 	while (getOctal != 0)
 	{
-		octal[x] = (getOctal % 8) + '0';
+		octal[a] = (getOctal % 8) + '0';
 		getOctal /= 8;
-		i++;
+		a++;
 	}
 
-	for (x = x - 1; x >= 0; x--)
+	for (a = a - 1; a >= 0; a--)
 	{
-		_putchar(octal[x]);
-		y++;
+		_putchar(octal[a]);
+		b++;
 	}
-	return (y);
+	return (b);
 }
 
 
@@ -134,27 +134,28 @@ int get_octal(va_list arg)
 
 int get_rot13(va_list arg)
 {
-	int x, y, flag, count = 0;
+	int a, b = 0;
+	int flag, count = 0;
 	char input[80] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char output[80] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	char *rot = va_arg(arg, char*);
 
-	for (x = 0; rot[x]; x++)
+	for (a = 0; rot[a]; a++)
 	{
 		flag = 0;
-		for (y = 0; input[y] && !flag; y++)
+		for (b = 0; input[b] && !flag; b++)
 		{
-			if (rot[x] == input[y])
+			if (rot[a] == input[b])
 			{
-				_putchar(output[y]);
+				_putchar(output[b]);
 				count++;
 				flag = 1;
 			}
 		}
 		if (!flag)
 		{
-			_putchar(rot[x]);
+			_putchar(rot[a]);
 			count++;
 		}
 	}
